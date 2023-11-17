@@ -66,7 +66,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
     } catch (error) {
       toast.error("Something went wrong!");
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
@@ -81,7 +81,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
     } catch (error) {
       toast.error("Make sure you removed all products uisng this size first!");
     } finally {
-      setLoading(false);
+      // setLoading(false);
       setOpen(false);
     }
   };

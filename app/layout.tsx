@@ -7,6 +7,8 @@ import { ModalProvider } from '@/providers/modal-provider';
 
 import './globals.css'
 import { ToasterProvider } from '@/providers/toast-provider';
+import { Suspense } from 'react';
+import Skeleton from '@/components/skelton';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -30,10 +32,13 @@ export default function RootLayout({
       }}>
     <html lang="en">
       <body className={inter.className}>
+        <Suspense fallback={<Skeleton/>}>
         <ToasterProvider />
         <ModalProvider/>
         {children}
+        </Suspense>
         </body>
+        
     </html>
     </ClerkProvider>
   )

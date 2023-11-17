@@ -2,6 +2,8 @@ import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { SettingsForm } from "./components/settings-form";
+import { Suspense } from "react";
+import Skeleton from "@/components/skelton";
 
 interface SettingsPageProps {
     params: {
@@ -32,7 +34,9 @@ params
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 pt-6">
+            <Suspense fallback={<Skeleton/>}>
             <SettingsForm initialData={store} />
+            </Suspense>
             </div>
         </div>
     );

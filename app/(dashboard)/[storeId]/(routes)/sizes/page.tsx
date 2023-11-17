@@ -2,6 +2,8 @@ import prismadb from "@/lib/prismadb";
 import { SizesClient } from "./components/client";
 import { SizeColumn } from "./components/columns";
 import {format} from "date-fns";
+import { Suspense } from "react";
+import Skeleton from "@/components/skelton";
 const SizesPage = async ({
     params 
 }: {
@@ -26,7 +28,9 @@ const SizesPage = async ({
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
+            <Suspense fallback={<Skeleton/>}>
                 <SizesClient data={formattedSizes} />
+                </Suspense>
             </div>
         </div>
     );

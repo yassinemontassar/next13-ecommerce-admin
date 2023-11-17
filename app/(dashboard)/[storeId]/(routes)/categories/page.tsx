@@ -2,6 +2,8 @@ import prismadb from "@/lib/prismadb";
 import { CategoryClient } from "./components/client";
 import { CategoryColumn } from "./components/columns";
 import {format} from "date-fns";
+import { Suspense } from "react";
+import Skeleton from "@/components/skelton";
 const CategoriesPage = async ({
     params 
 }: {
@@ -27,11 +29,15 @@ const CategoriesPage = async ({
     }));
 
     return (
+        <>
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
+                <Suspense fallback={<Skeleton/>}>
                 <CategoryClient data={formattedCategories} />
+                </Suspense>
             </div>
         </div>
+        </>
     );
 };
 
