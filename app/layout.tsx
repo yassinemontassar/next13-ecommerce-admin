@@ -9,6 +9,7 @@ import './globals.css'
 import { ToasterProvider } from '@/providers/toast-provider';
 import { Suspense } from 'react';
 import Skeleton from '@/components/skelton';
+import { ThemeProvider } from '@/providers/theme-provider';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -32,11 +33,13 @@ export default function RootLayout({
       }}>
     <html lang="en">
       <body className={inter.className}>
-        <Suspense fallback={<Skeleton/>}>
-        <ToasterProvider />
-        <ModalProvider/>
-        {children}
-        </Suspense>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+          <Suspense fallback={<Skeleton/>}>
+          <ToasterProvider />
+          <ModalProvider/>
+          {children}
+          </Suspense>
+        </ThemeProvider>
         </body>
         
     </html>

@@ -9,7 +9,6 @@ export async function GET (
     {params} : {params: { billboardId: string}}
     ) {
     try {
-    const { userId } = auth();
    
 
     if (!params.billboardId) {
