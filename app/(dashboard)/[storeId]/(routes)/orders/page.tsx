@@ -34,14 +34,16 @@ const OrdersPage = async ({
     id: item.id,
     phone: item.phone,
     address: item.address,
-    products: item.orderItems.map((orderItem) => orderItem.product.name).join(', '),
-    totalPrice: formatter.format(item.orderItems.reduce((total, item) => {
-      return total + Number(item.product.price)
+    products: item.orderItems.map((orderItem) => {
+      return `${orderItem.product.name} (x${orderItem.quantity})`;
+    }).join(', '),
+    totalPrice: formatter.format(item.orderItems.reduce((total, orderItem) => {
+      return total + Number(orderItem.product.price) * orderItem.quantity;
     }, 0)),
     isPaid: item.isPaid,
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
   }));
-
+  
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">

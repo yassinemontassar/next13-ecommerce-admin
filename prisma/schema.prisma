@@ -98,6 +98,7 @@ model OrderItem {
   orderId   String  // Foreign Key to Order
   order     Order   @relation(fields: [orderId], references: [id])
   productId String  // Foreign Key to Product
+  quantity  Int      @default(0)
   product   Product @relation(fields: [productId], references: [id])
 
   @@index([orderId])
