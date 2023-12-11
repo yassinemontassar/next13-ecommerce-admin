@@ -19,6 +19,7 @@ model Store {
   categories      Category[] @relation("StoreToCategory")
   products        Product[]  @relation("StoreToProduct")
   sizes           Size[]     @relation("StoreToSize")
+  subscribers     Subscriber[]  @relation("StoreToSubscriber")
   colors          Color[]     @relation("StoreToColor")
   orders          Order[]     @relation("StoreToOrder")
   createdAt       DateTime   @default(now())
@@ -112,6 +113,17 @@ model Size {
   name        String
   value       String
   products    Product[] // Relation to Product model
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([storeId])
+}
+
+model Subscriber {
+  id          String    @id @default(uuid())
+  storeId     String    // Foreign Key to Store
+  store       Store     @relation("StoreToSubscriber", fields: [storeId], references: [id])
+  name        String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
