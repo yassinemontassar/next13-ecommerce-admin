@@ -47,7 +47,7 @@ if (subscribers.length > 0) {
     to: email,
     subject: 'Rounda Subscriber Verification',
     html: `<p>Copy the following link to recieve our latest news:</p>
-           <h1 ${process.env.FRONTEND_STORE_URL}/?token=${token}&email=${email}"></h1>`,
+           <h1> ${process.env.FRONTEND_STORE_URL}/?token=${token}&email=${email}"</h1>`,
   });
 
 
