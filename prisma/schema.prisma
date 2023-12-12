@@ -123,7 +123,7 @@ model Subscriber {
   id          String    @id @default(uuid())
   storeId     String    // Foreign Key to Store
   store       Store     @relation("StoreToSubscriber", fields: [storeId], references: [id])
-  name        String
+  name        String    @unique
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
