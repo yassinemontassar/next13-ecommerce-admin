@@ -46,11 +46,11 @@ if (subscribers.length > 0) {
     from: 'sawthegamer70@gmail.com',
     to: email,
     subject: 'Rounda Subscriber Verification',
-    html: `<p>Click the following link to recieve our latest news:</p>
-           <a href="${process.env.FRONTEND_STORE_URL}/?token=${token}&email=${email}">Verify Email</a>`,
+    html: `<p>Copy the following link to recieve our latest news:</p>
+           <h1 ${process.env.FRONTEND_STORE_URL}/?token=${token}&email=${email}"></h1>`,
   });
 
-  console.log('Email sent:', info.response);
+
 
 
   return NextResponse.json({ url: `${process.env.FRONTEND_STORE_URL}` }, {
