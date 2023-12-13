@@ -3,7 +3,6 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 
-
 export async function GET(
     req: Request,
     { params }: { params: { productId: string } }
@@ -48,7 +47,8 @@ const {
     sizeId,
     images, 
     isFeatured, 
-    isArchived
+    isArchived,
+    isSent
  } = body;  
 
 if (!userId) {
@@ -92,6 +92,7 @@ if (!storeByUserId) {
 }
 
 
+
 await prismadb.product.update({
     where: {
       id: params.productId
@@ -107,6 +108,7 @@ await prismadb.product.update({
       },
       isFeatured,
       isArchived,
+      isSent
     },
   });
 

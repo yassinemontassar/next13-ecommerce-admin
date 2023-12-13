@@ -1,7 +1,7 @@
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-
+import nodemailer from 'nodemailer';
 export async function POST(
     req: Request, 
     {params} : {params: { storeId: string}}
@@ -18,7 +18,8 @@ export async function POST(
                 sizeId,
                 images, 
                 isFeatured, 
-                isArchived
+                isArchived,
+                isSent
              } = body;   
 
             if (!userId) {
@@ -63,12 +64,14 @@ export async function POST(
                 return new NextResponse("Unauthorized", {status: 403});
             }
 
+            
             const product = await prismadb.product.create({
                 data: {
                     name, 
                     price,
                     isFeatured,
                     isArchived,
+                    isSent,
                     categoryId,
                     colorId,
                     sizeId,
@@ -82,6 +85,36 @@ export async function POST(
                     }
                 }
             });
+
+
+            if (isSent == true) {
+                const producitId= product.id
+                const subscribers = await prismadb.subscriber.findMany({
+                    where: {
+                      storeId: params.storeId
+                    }
+                  });
+                  const subscriberNames = subscribers.map(subscriber => subscriber.name);
+                  
+                  const transporter = nodemailer.createTransport({
+                    service: 'sawthegamer70@gmail.com',
+                    auth: {
+                      user: 'sawthegamer70@gmail.com',
+                      pass: process.env.GMAIL_PASSWORD,
+                    },
+                  });
+                  
+                  const info = await transporter.sendMail({
+                    from: 'sawthegamer70@gmail.com',
+                    to: subscriberNames,
+                    subject: 'RoundaStore News',
+                    html: `<h1>You're recieving this mail because you're a subscriber to RoundaStore</h1>
+                           <h1>New product ${name} worth ${price} TND has been added </h1>
+                           <a href="${process.env.FRONTEND_STORE_URL}/product/${producitId}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none;">Check it out now!</a>`,
+                  });
+            }
+
+
             return NextResponse.json(product);
         } catch (error) {
             console.log('[PRODUCTS_POST', error);

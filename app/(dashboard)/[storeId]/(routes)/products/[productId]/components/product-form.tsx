@@ -36,7 +36,8 @@ const formSchema = z.object({
   colorId: z.string().min(1),
   sizeId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
-  isArchived: z.boolean().default(false).optional()
+  isArchived: z.boolean().default(false).optional(),
+  isSent: z.boolean().default(false).optional()
 });
 
 type ProductFormValues = z.infer<typeof formSchema>
@@ -70,6 +71,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const defaultValues = initialData ? {
     ...initialData,
     price: parseFloat(String(initialData?.price)),
+    
   } : {
     name: '',
     images: [],
@@ -79,6 +81,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     sizeId: '',
     isFeatured: false,
     isArchived: false,
+    isSent: false,
   }
 
   const form = useForm<ProductFormValues>({
@@ -306,6 +309,31 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 </FormItem>
               )}
             />
+           {initialData?.isSent == undefined && (
+            <FormField
+              control={form.control}
+              name="isSent"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      // @ts-ignore
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                      Send to subscribers
+                    </FormLabel>
+                    <FormDescription>
+                      This product will be sent to subscribers.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+              )}
           </div>
           <Button disabled={loading} className="ml-auto" type="submit">
             {action}
