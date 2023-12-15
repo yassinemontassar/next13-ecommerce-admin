@@ -13,6 +13,7 @@ export async function POST(
             const { 
                 name,
                 price, 
+                discount,
                 categoryId,
                 colorId, 
                 sizeId,
@@ -69,6 +70,7 @@ export async function POST(
                 data: {
                     name, 
                     price,
+                    discount,
                     isFeatured,
                     isArchived,
                     isSent,

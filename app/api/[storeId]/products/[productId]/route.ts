@@ -42,6 +42,7 @@ const body = await req.json();
 const { 
     name,
     price, 
+    discount,
     categoryId,
     colorId, 
     sizeId,
@@ -100,6 +101,7 @@ await prismadb.product.update({
     data: {
       name,
       price,
+      discount,
       categoryId,
       colorId,
       sizeId,
