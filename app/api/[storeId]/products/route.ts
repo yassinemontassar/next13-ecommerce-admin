@@ -134,6 +134,8 @@ export async function POST(
                 
              const {searchParams} = new URL(req.url);
              const categoryId= searchParams.get("categoryId") || undefined;
+             const name = searchParams.get("name") || undefined;
+             const price = searchParams.get("price") || undefined;
              const colorId= searchParams.get("colorId") || undefined;
              const sizeId= searchParams.get("sizeId") || undefined;
              const isFeatured= searchParams.get("isFeatured") ;
@@ -146,6 +148,13 @@ export async function POST(
                 const products = await prismadb.product.findMany({
                     where: {
                         storeId: params.storeId,
+                        name: {
+                            contains: name,
+                            mode: 'insensitive', // Case-insensitive search
+                        },
+                        price: {
+                            lte: price, // Less than or equal to the specified price
+                        },
                         categoryId,
                         colorId,
                         sizeId,
@@ -162,7 +171,9 @@ export async function POST(
                         createdAt: 'desc'
                     }
                 });
+                console.log(products)
                 return NextResponse.json(products);
+               
             } catch (error) {
                 console.log('[PRODUCTS_GET', error);
                 return new NextResponse("Internal error", {status: 500});
