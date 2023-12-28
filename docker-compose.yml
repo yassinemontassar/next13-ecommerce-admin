@@ -1,0 +1,10 @@
+version: '3.9' 
+
+services:
+  nextapp:
+    container_name: nextapp-admin
+    image: ecommerce/nextapp-admin
+    build: . 
+    ports:
+      - "3000:3000"
+      

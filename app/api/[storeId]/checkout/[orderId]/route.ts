@@ -40,9 +40,7 @@ req: Request,
 try {
 const { userId } = auth();
 const body = await req.json();
-
-const { updateData } = body;
-console.log(body.isPaid);
+const { isPaid } = body;   
 
 if (!userId) {
     return new NextResponse("Unauthenticated!", {status: 401});
@@ -66,16 +64,16 @@ if (!storeByUserId) {
 }
 
 
-// const order = await prismadb.order.updateMany({
-//     where: {
-//         id: params.orderId,
-//     },
-//     data: {
-//         isPaid: false,
-//     }
-// });
+const order = await prismadb.order.updateMany({
+    where: {
+        id: params.orderId,
+    },
+    data: {
+        isPaid: !isPaid,
+    }
+});
 
-// return NextResponse.json(order);
+return NextResponse.json(order);
 
 } catch (error) {
     console.log('[ORDER_PATCH]', error);

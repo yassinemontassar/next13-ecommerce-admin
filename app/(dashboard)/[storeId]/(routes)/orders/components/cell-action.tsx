@@ -44,10 +44,7 @@ export const CellAction: React.FC<CellActionProps> = ({
 
       const UpdateStatus = async () => {
         try {
-          const updateData = {
-            isPaid: data.isPaid,
-          };
-          console.log(updateData)
+          const updateData = {isPaid: data.isPaid};
           setLoading(true);
           await axios.patch(`/api/${params.storeId}/checkout/${data.id}`, updateData);
           router.refresh();
