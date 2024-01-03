@@ -171,7 +171,6 @@ export async function POST(
                         createdAt: 'desc'
                     }
                 });
-                console.log(products)
                 return NextResponse.json(products);
                
             } catch (error) {

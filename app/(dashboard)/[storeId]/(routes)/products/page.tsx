@@ -2,7 +2,7 @@ import prismadb from "@/lib/prismadb";
 import { ProductClient } from "./components/client";
 import { ProductColumn } from "./components/columns";
 import {format} from "date-fns";
-import { formatter } from "@/lib/utils";
+import { formatTND } from "@/lib/utils";
 import { Suspense } from "react";
 import Skeleton from "@/components/skelton";
 const ProductsPage = async ({
@@ -29,7 +29,7 @@ const ProductsPage = async ({
         name: item.name,
         isFeatured: item.isFeatured,
         isArchived: item.isArchived,
-        price:  formatter.format(item.price.toNumber()),
+        price:  formatTND(item.price.toNumber()),
         category: item.category.name,
         size: item.size.name, 
         color: item.color.value,

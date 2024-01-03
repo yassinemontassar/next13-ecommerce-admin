@@ -8,7 +8,7 @@ import { getTotalRevenue } from "@/actions/get-total-revenue";
 import { getSalesCount } from "@/actions/get-sales-count";
 import { getGraphRevenue } from "@/actions/get-graph-revenue";
 import { getStockCount } from "@/actions/get-stock-count";
-import { formatter } from "@/lib/utils";
+import { formatTND } from "@/lib/utils";
 
 interface DashboardPageProps {
   params: {
@@ -23,6 +23,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
   const graphRevenue = await getGraphRevenue(params.storeId);
   const salesCount = await getSalesCount(params.storeId);
   const stockCount = await getStockCount(params.storeId);
+  const currentYear = new Date().getFullYear(); 
 
   return (
     <div className="flex-col">
@@ -38,7 +39,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{formatter.format(totalRevenue)}</div>
+              <div className="text-2xl font-bold">{formatTND(totalRevenue)}</div>
             </CardContent>
           </Card>
           <Card>
@@ -62,7 +63,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
         </div>
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Overview</CardTitle>
+            <CardTitle>Overview({currentYear})</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
             <Overview data={graphRevenue} />

@@ -19,7 +19,7 @@ export async function POST(
 ) {
   const { email } = await req.json();
 
-  console.log(email)
+
 
 
 

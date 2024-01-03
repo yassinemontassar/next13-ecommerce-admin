@@ -7,11 +7,17 @@ interface GraphData {
 }
 
 export const getGraphRevenue = async (storeId: string): Promise<GraphData[]> => {
+  const currentYear = new Date().getFullYear(); 
   const paidOrders = await prismadb.order.findMany({
     where: {
       storeId,
       isPaid: true,
+      createdAt: {
+        gte: new Date(`${currentYear}-01-01T00:00:00Z`), // Filter orders from the start of the current year
+        lt: new Date(`${currentYear + 1}-01-01T00:00:00Z`), // Filter orders until the start of the next year
+      },
     },
+    
     include: {
       orderItems: {
         include: {
@@ -29,7 +35,8 @@ export const getGraphRevenue = async (storeId: string): Promise<GraphData[]> => 
     let revenueForOrder = 0;
 
     for (const item of order.orderItems) {
-      revenueForOrder += item.product.price.toNumber() * item.quantity;
+      const discountedPrice = item.product.price.toNumber() * (1 - item.product.discount / 100);
+      revenueForOrder += discountedPrice * item.quantity;
     }
 
     // Adding the revenue for this order to the respective month
@@ -38,18 +45,19 @@ export const getGraphRevenue = async (storeId: string): Promise<GraphData[]> => 
 
   // Converting the grouped data into the format expected by the graph
   const graphData: GraphData[] = [
-    { name: "Jan", total: 0 },
-    { name: "Feb", total: 0 },
+    { name: "Janv", total: 0 },
+    { name: "Fév", total: 0 },
     { name: "Mar", total: 0 },
-    { name: "Apr", total: 0 },
-    { name: "May", total: 0 },
-    { name: "Jun", total: 0 },
-    { name: "Jul", total: 0 },
-    { name: "Aug", total: 0 },
+    { name: "Avr", total: 0 },
+    { name: "Mai", total: 0 },
+    { name: "Juin", total: 0 },
+    { name: "Juil", total: 0 },
+    { name: "Août", total: 0 },
     { name: "Sep", total: 0 },
     { name: "Oct", total: 0 },
     { name: "Nov", total: 0 },
-    { name: "Dec", total: 0 },
+    { name: "Déc", total: 0 },
+    
   ];
 
   // Filling in the revenue data

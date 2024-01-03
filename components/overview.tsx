@@ -21,9 +21,9 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
           fontSize={12}
           tickLine={false}
           axisLine={false}
-          tickFormatter={(value) => `$${value}`}
+          tickFormatter={(value) => `${value}DT`}
         />
-        <Tooltip formatter={(value: number) => `$${value.toFixed(2)}`} />
+        <Tooltip formatter={(value: number) => `${value.toFixed(3)} TND`} />
         <Bar dataKey="total" fill="#3498db" radius={[0, 0, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>

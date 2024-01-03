@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 
 import prismadb from "@/lib/prismadb";
-import { formatter } from "@/lib/utils";
+import { formatTND } from "@/lib/utils";
 
 import { OrderColumn } from "./components/columns"
 import { OrderClient } from "./components/client";
@@ -37,8 +37,9 @@ const OrdersPage = async ({
     products: item.orderItems.map((orderItem) => {
       return `${orderItem.product.name} (x${orderItem.quantity})`;
     }).join(', '),
-    totalPrice: formatter.format(item.orderItems.reduce((total, orderItem) => {
-      return total + Number(orderItem.product.price) * orderItem.quantity;
+    totalPrice: formatTND(item.orderItems.reduce((total, orderItem) => {
+      const discountedPrice = Number(orderItem.product.price) * (1 - orderItem.product.discount / 100);
+      return total + discountedPrice * orderItem.quantity;
     }, 0)),
     isPaid: item.isPaid,
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
