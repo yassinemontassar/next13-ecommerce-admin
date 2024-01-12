@@ -35,8 +35,8 @@ const OrdersPage = async ({
     phone: item.phone,
     address: item.address,
     products: item.orderItems.map((orderItem) => {
-      return `${orderItem.product.name} (x${orderItem.quantity})`;
-    }).join(', '),
+      return `${orderItem.product.name} (Qt: ${orderItem.quantity},T: ${orderItem.size} )`;
+    }).join(' | '),
     totalPrice: formatTND(item.orderItems.reduce((total, orderItem) => {
       const discountedPrice = Number(orderItem.product.price) * (1 - orderItem.product.discount / 100);
       return total + discountedPrice * orderItem.quantity;

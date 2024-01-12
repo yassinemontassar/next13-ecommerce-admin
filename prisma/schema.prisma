@@ -102,6 +102,7 @@ model OrderItem {
   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   productId String // Foreign Key to Product
   quantity  Int     @default(0)
+  size      String  @default("XL")
   product   Product @relation(fields: [productId], references: [id])
 
   @@index([orderId])

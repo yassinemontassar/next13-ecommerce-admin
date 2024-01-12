@@ -42,10 +42,7 @@ export async function POST(
   req: Request,
   { params }: { params: { storeId: string } }
 ) {
-  const { productIds, address, phoneNumber, quantity } = await req.json();
-
-  console.log(quantity)
-
+  const { productIds, address, phoneNumber, quantity, taille } = await req.json();
   if (!productIds || productIds.length === 0) {
     return new NextResponse("Product ids are required", { status: 400 });
   }
@@ -71,7 +68,9 @@ export async function POST(
               id: productId
             }
           },
-          quantity: quantity[index]
+          quantity: quantity[index],
+          size: taille[index]
+
         })),
 
         

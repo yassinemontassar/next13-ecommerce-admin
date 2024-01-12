@@ -327,7 +327,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                         />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent style={{ maxHeight: '300px', overflowY: 'auto' }}>
                       {colors.map((color) => (
                         <SelectItem
                           key={color.id}
