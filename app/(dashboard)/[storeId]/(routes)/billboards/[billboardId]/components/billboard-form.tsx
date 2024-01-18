@@ -127,7 +127,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                  value={field.value ? [field.value] : []}
                  disabled={loading}
                  onChange={(url) => field.onChange(url)}
-                 onRemove={() => field.onChange("")}
+                 onRemove={() => field.onChange('')} 
                  />
                 </FormControl>
                 <FormMessage />

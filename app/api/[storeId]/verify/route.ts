@@ -28,14 +28,14 @@ export async function POST(
 
 if (subscribers.length > 0) {
   return new NextResponse("Subscriber exists", {
-    status: 400,
+    status: 200,
     headers: corsHeaders
   });
 }
 
 
   const transporter = nodemailer.createTransport({
-    service: 'sawthegamer70@gmail.com',
+    service: 'gmail',
     auth: {
       user: 'sawthegamer70@gmail.com',
       pass: process.env.GMAIL_PASSWORD,
@@ -45,8 +45,8 @@ if (subscribers.length > 0) {
   const info = await transporter.sendMail({
     from: 'sawthegamer70@gmail.com',
     to: email,
-    subject: 'Rounda Subscriber Verification',
-    html: `<p>Copy the following link to recieve our latest news:</p>
+    subject: 'Confirmation d\'abonnement à la Newsletter de RoundaStore',
+    html: `<p>Copiez le lien suivant pour confirmer votre abonnement à notre newsletter :</p>
            <h1> ${process.env.FRONTEND_STORE_URL}/?token=${token}&email=${email}</h1>`,
   });
 

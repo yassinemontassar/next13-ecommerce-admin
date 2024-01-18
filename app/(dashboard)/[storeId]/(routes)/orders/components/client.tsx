@@ -16,9 +16,9 @@ export const OrderClient: React.FC<OrderClientProps> = ({
 }) => {
   return (
     <>
-      <Heading title={`Orders (${data.length})`} description="Manage orders for your store" />
+      <Heading title={`Commandes (${data.length})`} description="Gérez les commandes de votre magasin" />
       <Separator />
-      <DataTable searchKey="phone" columns={columns} data={data} />
+      <DataTable searchKey="name" columns={columns} data={data} />
       <Heading title="API" description="API calls for orders" />
         <Separator />
         <ApiList 

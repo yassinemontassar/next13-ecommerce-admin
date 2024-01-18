@@ -109,10 +109,10 @@ export async function POST(
                   const info = await transporter.sendMail({
                     from: 'sawthegamer70@gmail.com',
                     to: subscriberNames,
-                    subject: 'RoundaStore News',
-                    html: `<h1>You're recieving this mail because you're a subscriber to RoundaStore</h1>
-                           <h1>New product ${name} worth ${price} TND has been added </h1>
-                           <a href="${process.env.FRONTEND_STORE_URL}/product/${producitId}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none;">Check it out now!</a>`,
+                    subject: 'Nouveautés chez RoundaStore',
+                    html: `<h1>Vous recevez cet e-mail car vous êtes abonné à RoundaStore</h1>
+                    <h1>Un nouveau produit ${name} d'une valeur de ${price} TND a été ajouté</h1>
+                           <a href="${process.env.FRONTEND_STORE_URL}/product/${producitId}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none;">Découvrez-le maintenant !</a>`,
                   });
             }
 
