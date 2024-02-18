@@ -139,7 +139,8 @@ export async function POST(
              const colorId= searchParams.get("colorId") || undefined;
              const sizeId= searchParams.get("sizeId") || undefined;
              const isFeatured= searchParams.get("isFeatured") ;
-        
+             const isNew = searchParams.get("isNew") || undefined;
+
     
                 if (!params.storeId) {
                     return new NextResponse("Store ID is required", {status: 400});
@@ -159,7 +160,12 @@ export async function POST(
                         colorId,
                         sizeId,
                         isFeatured: isFeatured ? true : undefined,
-                        isArchived: false
+                        isArchived: false,
+                        updatedAt: isNew
+                        ? {
+                            gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+                          }
+                        : undefined,
                     },
                     include: {
                         images: true,
