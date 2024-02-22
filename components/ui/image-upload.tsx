@@ -27,7 +27,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   }, []);
 
   const onUpload = (result: any) => {
-    console.log('Public ID:', result.info.public_id);
     setUploadResult(result); // Save the result in state
     onChange(result.info.secure_url);
   };
@@ -52,16 +51,17 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         const response = await axios.delete(apiUrl);
   
         if (response.status === 200) {
-          console.log('Image removed successfully');
-          onRemove(url); // Call onRemove with the publicId
+          console.log('Image removed successfully:', url); // Log url here
+          onRemove(url);
         } else {
-          console.error('Failed to remove image');
+          console.error('Failed to remove image:', url); // Include url in error message
         }
       } catch (error) {
-        console.error('Error removing image:', error);
+        console.error('Error removing image:', url, error); // Include url in error message
       }
     }
   };
+  
 
   if (!isMounted) {
     return null;

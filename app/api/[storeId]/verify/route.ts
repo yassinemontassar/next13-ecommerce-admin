@@ -43,7 +43,7 @@ if (subscribers.length > 0) {
   });
 
   const info = await transporter.sendMail({
-    from: 'sawthegamer70@gmail.com',
+    from: 'RoundaStore',
     to: email,
     subject: 'Confirmation d\'abonnement à la Newsletter de RoundaStore',
     html: `<p>Copiez le lien suivant pour confirmer votre abonnement à notre newsletter :</p>

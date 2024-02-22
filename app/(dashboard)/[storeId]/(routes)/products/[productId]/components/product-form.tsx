@@ -102,6 +102,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const onSubmit = async (data: ProductFormValues) => {
     try {
+
       setLoading(true);
       if (initialData) {
         await axios.patch(
