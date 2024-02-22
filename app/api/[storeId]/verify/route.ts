@@ -42,14 +42,24 @@ if (subscribers.length > 0) {
     },
   });
 
+  const confirmationLink = `${process.env.FRONTEND_STORE_URL}/?token=${token}&email=${email}`;
   const info = await transporter.sendMail({
-    from: 'RoundaStore',
+    from: 'RoundaStore <your-email@example.com>', // Replace with your actual email address
     to: email,
     subject: 'Confirmation d\'abonnement à la Newsletter de RoundaStore',
-    html: `<p>Copiez le lien suivant pour confirmer votre abonnement à notre newsletter :</p>
-           <h1> ${process.env.FRONTEND_STORE_URL}/?token=${token}&email=${email}</h1>`,
+    html: `
+      <div style="font-family: 'Arial', sans-serif; color: #333; text-align: center;">
+        <p style="font-size: 18px;">Bienvenue chez RoundaStore !</p>
+        <p style="font-size: 16px;">Cliquez sur le bouton ci-dessous pour confirmer votre abonnement à notre newsletter :</p>
+        <a href="${confirmationLink}" style="display: inline-block; margin: 10px 0; padding: 10px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">
+          Confirmer l'abonnement
+        </a>
+        <p style="font-size: 14px;">Si le bouton ne fonctionne pas, veuillez copier et coller ce lien dans votre navigateur :</p>
+        <p style="font-size: 14px; color: #4CAF50;">${confirmationLink}</p>
+        <p style="font-size: 14px;">Merci de faire partie de la communauté RoundaStore !</p>
+      </div>
+    `,
   });
-
 
 
 
