@@ -33,9 +33,9 @@ export const CellAction: React.FC<CellActionProps> = ({
           setLoading(true);
           await axios.delete(`/api/${params.storeId}/sizes/${data.id}`);
           router.refresh();
-          toast.success("Size deleted!")
+          toast.success("Taille a ete supprimer!")
         } catch (error) {
-          toast.error("Make sure you removed all products uisng this size first!");
+          toast.error("Assurez-vous d'avoir d'abord supprimé tous les produits utilisant cette taille !!");
         } finally {
           setLoading(false);
           setOpen(false);
@@ -64,19 +64,19 @@ return (
         </DropdownMenuLabel>
         <DropdownMenuItem onClick={() => onCopy(data.id)}>
             <Copy className="mr-2 h-4 w-4" />
-            Copy ID
+            Copier ID
         </DropdownMenuItem>
         <DropdownMenuItem 
         onClick={() => setOpen(true)}
         >
             <Trash className="mr-2 h-4 w-4" />
-            Delete
+            Supprimer
         </DropdownMenuItem>
         <DropdownMenuItem 
         onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}
         >
             <Edit className="mr-2 h-4 w-4" />
-            Update
+            Modifier
         </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>

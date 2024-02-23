@@ -33,9 +33,9 @@ export const CellAction: React.FC<CellActionProps> = ({
           setLoading(true);
           await axios.delete(`/api/${params.storeId}/checkout/${data.id}`);
           router.refresh();
-          toast.success("Order deleted!")
+          toast.success("Commande a ete supprime!")
         } catch (error) {
-          toast.error("Make sure you removed all products using this category first!");
+          toast.error("error");
         } finally {
           setLoading(false);
           setOpen(false);
@@ -48,9 +48,9 @@ export const CellAction: React.FC<CellActionProps> = ({
           setLoading(true);
           await axios.patch(`/api/${params.storeId}/checkout/${data.id}`, updateData);
           router.refresh();
-          toast.success("Order updated!")
+          toast.success("Commande a ete modifier!")
         } catch (error) {
-          toast.error("Make sure you removed all products using this category first!");
+          toast.error("error");
         } finally {
           setLoading(false);
         }
@@ -78,13 +78,13 @@ return (
         </DropdownMenuLabel>
         <DropdownMenuItem onClick={() => onCopy(data.id)}>
             <Copy className="mr-2 h-4 w-4" />
-            Copy ID
+            Copier ID
         </DropdownMenuItem>
         <DropdownMenuItem 
         onClick={() => setOpen(true)}
         >
             <Trash className="mr-2 h-4 w-4" />
-            Delete
+            Supprimer
         </DropdownMenuItem>
         <DropdownMenuItem 
         onClick={UpdateStatus}
@@ -92,12 +92,12 @@ return (
          {data.isPaid==false ? (
   <>
     <Check className="mr-2 h-4 w-4 text-green-400" />
-    Mark as paid
+    Marquer comme payé
   </>
 ) : 
 <>
 <XCircleIcon className="mr-2 h-4 w-4 text-red-700" />
-Mark as unpaid
+Marquer comme impayé 
 </>
 }
         </DropdownMenuItem>

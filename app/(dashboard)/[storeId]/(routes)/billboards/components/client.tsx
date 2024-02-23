@@ -22,12 +22,12 @@ data
         <>
         <div className="flex items-center justify-between">
         <Heading
-        title={`Billboards (${data.length})`}
-        description="Manage billboards for your store"
+        title={`Affiches (${data.length})`}
+        description="Gérez les Affiches de votre magasin"
         />
         <Button  onClick={() => router.push(`/${params.storeId}/billboards/new`)}>
             <Plus className="mr-2 h-4 w-4" />
-            Add New 
+            Ajouter 
         </Button>
         </div>  
         <Separator />

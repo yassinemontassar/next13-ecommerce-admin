@@ -23,11 +23,11 @@ data
         <div className="flex items-center justify-between">
         <Heading
         title={`Categories (${data.length})`}
-        description="Manage categories for your store"
+        description="Gérez les Catégories de votre magasin"
         />
         <Button  onClick={() => router.push(`/${params.storeId}/categories/new`)}>
             <Plus className="mr-2 h-4 w-4" />
-            Add New 
+            Ajouter
         </Button>
         </div>  
         <Separator />

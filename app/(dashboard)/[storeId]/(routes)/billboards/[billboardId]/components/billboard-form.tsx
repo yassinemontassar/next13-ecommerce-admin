@@ -39,9 +39,9 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? "Modifier billboard" : "Cree billboard";
-  const description = initialData ? "Modifier un billboard" : "Ajouter un billboard";
-  const toastMessage = initialData ? "Billboard a ete modifier" : "Billboard a ete cree";
+  const title = initialData ? "Modifier Affiche" : "Cree Affiche";
+  const description = initialData ? "Modifier un Affiche" : "Ajouter un Affiche";
+  const toastMessage = initialData ? "Affiche a ete modifier" : "Affiche a ete cree";
   const action = initialData ? "Enregistrer les modifications" : "Cree";
 
   const form = useForm<BillboardFormValues>({
@@ -77,9 +77,9 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
       await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
       router.refresh();
       router.push(`/${params.storeId}/billboards`)
-      toast.success("Billboard deleted!")
+      toast.success("Affiche a ete supprimer!")
     } catch (error) {
-      toast.error("Make sure you removed all categories uisng this billboard!");
+      toast.error("Assurez-vous d'avoir d'abord supprimé tous les categories utilisant cette affiche !!");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -121,7 +121,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
             name="imageUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Background image</FormLabel>
+                <FormLabel>Image d’arrière-plan</FormLabel>
                 <FormControl>
                  <ImageUpload 
                  value={field.value ? [field.value] : []}
@@ -141,10 +141,10 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
               name="label"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Label</FormLabel>
+                  <FormLabel>Nom</FormLabel>
                   <FormControl>
                     <Input className="w-auto" disabled={loading}
-                      placeholder="Nom de billboard"
+                      placeholder="Nom de l'Affiche"
                       {...field}
                     />
                   </FormControl>

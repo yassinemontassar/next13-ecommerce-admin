@@ -20,42 +20,42 @@ export function MainNav({
         },
         {
             href: `/${params.storeId}/billboards`,
-            label: 'Billboards',
+            label: 'Affiches',
             active: pathname === `/${params.storeId}/billboards`,
         },
         {
             href: `/${params.storeId}/categories`,
-            label: 'Categories',
+            label: 'Catégories',
             active: pathname === `/${params.storeId}/categories`,
         },
         {
             href: `/${params.storeId}/sizes`,
-            label: 'Sizes',
+            label: 'Tailles',
             active: pathname === `/${params.storeId}/sizes`,
         },
         {
             href: `/${params.storeId}/colors`,
-            label: 'Colors',
+            label: 'Couleurs',
             active: pathname === `/${params.storeId}/colors`,
         },
         {
             href: `/${params.storeId}/products`,
-            label: 'Products',
+            label: 'Produits',
             active: pathname === `/${params.storeId}/products`,
         },
         {
             href: `/${params.storeId}/orders`,
-            label: 'Orders',
+            label: 'Commandes',
             active: pathname === `/${params.storeId}/orders`,
         },
         {
             href: `/${params.storeId}/settings`,
-            label: 'Settings',
+            label: 'Paramètres',
             active: pathname === `/${params.storeId}/settings`,
         },
         {
             href: `/${params.storeId}/subscribers`,
-            label: 'Subscribers',
+            label: 'Abonnés',
             active: pathname === `/${params.storeId}/subscribers`,
         },
     ];

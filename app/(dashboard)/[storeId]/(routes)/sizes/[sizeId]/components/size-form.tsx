@@ -39,10 +39,11 @@ export const SizeForm: React.FC<SizeFormProps> = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? "Modifier size" : "Cree size";
-  const description = initialData ? "Modifier un size" : "Ajouter un size";
-  const toastMessage = initialData ? "size a ete modifier" : "size a ete cree";
-  const action = initialData ? "Enregistrer les modifications" : "Cree";
+  const title = initialData ? "Modifier la taille" : "Créer une taille";
+  const description = initialData ? "Modifier une taille" : "Ajouter une taille";
+  const toastMessage = initialData ? "La taille a été modifiée" : "La taille a été créée";
+  const action = initialData ? "Enregistrer les modifications" : "Créer";
+  
 
   const form = useForm<SizeFormValues>({
     resolver: zodResolver(formSchema),
@@ -77,9 +78,10 @@ export const SizeForm: React.FC<SizeFormProps> = ({
       await axios.delete(`/api/${params.storeId}/sizes/${params.sizeId}`);
       router.refresh();
       router.push(`/${params.storeId}/sizes`)
-      toast.success("Size deleted!")
+      toast.success("Taille a ete supprimer!")
     } catch (error) {
-      toast.error("Make sure you removed all products uisng this size first!");
+      toast.error("Assurez-vous d'avoir supprimé tous les produits liés à cette taille !");
+
     } finally {
       // setLoading(false);
       setOpen(false);
@@ -122,10 +124,10 @@ export const SizeForm: React.FC<SizeFormProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Nom</FormLabel>
                   <FormControl>
                     <Input className="w-auto" disabled={loading}
-                      placeholder="Nom de size"
+                      placeholder="Nom du taille"
                       {...field}
                     />
                   </FormControl>
@@ -138,10 +140,10 @@ export const SizeForm: React.FC<SizeFormProps> = ({
               name="value"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Value</FormLabel>
+                  <FormLabel>Valeur</FormLabel>
                   <FormControl>
                     <Input className="w-auto" disabled={loading}
-                      placeholder="Nom de Value"
+                      placeholder="Valeurs"
                       {...field}
                     />
                   </FormControl>

@@ -41,10 +41,11 @@ export const SizeForm: React.FC<SizeFormProps> = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? "Update subscriber" : "Create subscriber";
-  const description = initialData ? "Modify a subscriber" : "Add a subscriber";
-  const toastMessage = initialData ? "subscriber updated" : "subscriber is created";
-  const action = initialData ? "Save" : "Create";
+  const title = initialData ? "Mettre à jour l'abonné" : "Créer un abonné";
+  const description = initialData ? "Modifier un abonné" : "Ajouter un abonné";
+  const toastMessage = initialData ? "Abonné mis à jour" : "Abonné créé";
+  const action = initialData ? "Enregistrer" : "Créer";
+  
 
   const form = useForm<SizeFormValues>({
     resolver: zodResolver(formSchema),

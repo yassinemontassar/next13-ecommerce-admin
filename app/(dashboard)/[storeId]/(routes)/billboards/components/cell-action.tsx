@@ -64,19 +64,19 @@ return (
         </DropdownMenuLabel>
         <DropdownMenuItem onClick={() => onCopy(data.id)}>
             <Copy className="mr-2 h-4 w-4" />
-            Copy ID
+            Copier ID
         </DropdownMenuItem>
         <DropdownMenuItem 
         onClick={() => setOpen(true)}
         >
             <Trash className="mr-2 h-4 w-4" />
-            Delete
+            Supprimer
         </DropdownMenuItem>
         <DropdownMenuItem 
         onClick={() => router.push(`/${params.storeId}/billboards/${data.id}`)}
         >
             <Edit className="mr-2 h-4 w-4" />
-            Update
+            Modifier
         </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>

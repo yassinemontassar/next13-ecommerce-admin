@@ -47,7 +47,7 @@ initialData
         setLoading(true);
         await axios.patch(`/api/stores/${params.storeId}`,data);
         router.refresh();
-        toast.success("Store updated")
+        toast.success("Boutique a ete modifier")
       } catch (error) {
         toast.error("Something went wrong!");
       } finally {
@@ -62,7 +62,7 @@ initialData
           await axios.delete(`/api/stores/${params.storeId}`);
           router.refresh();
           router.push("/")
-          toast.success("Store deleted!")
+          toast.success("Boutique a ete supprimer!")
         } catch (error) {
           toast.error("Make sure you removed all products and categories");
         } finally {
@@ -83,10 +83,11 @@ initialData
         <div className="flex items-center justify-between p-1">
             <Heading
             title="Parametres"
-            description="Manage store preferences"
+            description="Gérez les paramètres de votre magasin"
             />
             <Button
-            disabled={loading}
+            disabled
+            // disabled={loading}
             variant="destructive"
             size="sm" 
             onClick={() => setOpen(true)}
@@ -122,7 +123,7 @@ initialData
                 className="ml-auto"
                 type="submit"
                 >
-                    Save changes
+                    Enregistrer
                 </Button>
 
             </form>
