@@ -30,8 +30,8 @@ if(!isMounted) {
 
 return (
     <Modal
-    title="Are you sure?"
-    description="This action cannot be undone"
+    title="Êtes-vous sûr(e) ?"
+    description="Cette action ne peut pas être annulée"    
     isOpen={isOpen}
     onClose={onClose}
     >

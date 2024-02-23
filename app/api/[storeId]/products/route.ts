@@ -107,13 +107,29 @@ export async function POST(
                   });
                   
                   const info = await transporter.sendMail({
-                    from: 'sawthegamer70@gmail.com',
+                    from: 'RoundaStore',
                     to: subscriberNames,
-                    subject: 'Nouveautés chez RoundaStore',
-                    html: `<h1>Vous recevez cet e-mail car vous êtes abonné à RoundaStore</h1>
-                    <h1>Un nouveau produit ${name} d'une valeur de ${price} TND a été ajouté</h1>
-                           <a href="${process.env.FRONTEND_STORE_URL}/product/${producitId}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none;">Découvrez-le maintenant !</a>`,
+                    subject: 'Découvrez les dernières nouveautés chez RoundaStore',
+                    html: `
+                      <div style="font-family: 'Arial', sans-serif; padding: 20px; background-color: #f4f4f4; text-align: center;">
+                      <img src="https://res.cloudinary.com/dtquv74c5/image/upload/v1708723083/305225777_504878824974401_1233273048854658660_n_lf9wum.jpg" alt="RoundaStore Logo" style="max-width: 150px; border-radius: 50%; margin-bottom: 20px;">
+                        <h2 style="color: #333;">Vous recevez cet e-mail car vous êtes abonné à RoundaStore</h2>
+                        <div style="border-top: 2px solid #007bff; margin: 20px 0;"></div>
+                        <h1 style="color: #007bff; margin-bottom: 10px;">🎉 Nouveauté chez RoundaStore ! 🎉</h1>
+                        <p style="color: #555; font-size: 16px; line-height: 1.6;">
+                          Nous avons ajouté un nouveau produit à notre collection :
+                          <strong>${name}</strong> d'une valeur de <strong>${price} TND</strong>.
+                        </p>
+                        <a href="${process.env.FRONTEND_STORE_URL}/product/${producitId}"
+                          style="display: inline-block; padding: 15px 30px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px; margin-top: 20px;">
+                          Découvrez-le maintenant !
+                        </a>
+                        <div style="border-top: 2px solid #007bff; margin: 20px 0;"></div>
+                        <p style="color: #777; font-size: 12px;">Merci de faire partie de la famille RoundaStore!</p>
+                      </div>
+                    `,
                   });
+                  
             }
 
 
