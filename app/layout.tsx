@@ -15,8 +15,8 @@ import { ThemeProvider } from '@/providers/theme-provider';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'RoundaStore Admin Dashboard',
-  description: 'RoundaStore Admin Dashboard',
+  title: 'RoundaStore Administration',
+  description: 'RoundaStore Administration',
 }
 
 export default function RootLayout({
